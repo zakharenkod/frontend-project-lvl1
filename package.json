@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/zakharenkod/frontend-project-lvl1/issues"
   },
-  "homepage": "https://github.com/zakharenkod/frontend-project-lvl1#readme"
+  "homepage": "https://github.com/zakharenkod/frontend-project-lvl1#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0"
+  }
 }
