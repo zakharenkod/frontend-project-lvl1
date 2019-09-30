@@ -1,5 +1,6 @@
 import readlineSync from 'readline-sync';
 import * as brainEven from './games/brain-even';
+import * as brainCalc from './games/brain-calc';
 
 const getUserName = () => readlineSync.question('\nMay I have your name? ');
 
@@ -9,11 +10,16 @@ const printRule = (rule) => {
 
 const getUserAnswer = () => readlineSync.question('Your answer: ');
 const getGame = (gameName) => {
-  if (gameName === 'brain-even') {
-    return brainEven;
-  }
+  switch (gameName) {
+    case 'brain-even':
+      return brainEven;
 
-  return null;
+    case 'brain-calc':
+      return brainCalc;
+
+    default:
+      return null;
+  }
 };
 
 export default (gameName = '') => {
