@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import * as brainEven from './games/brain-even';
 import * as brainCalc from './games/brain-calc';
+import * as brainGcd from './games/brain-gcd';
 
 const getUserName = () => readlineSync.question('\nMay I have your name? ');
 
@@ -16,6 +17,9 @@ const getGame = (gameName) => {
 
     case 'brain-calc':
       return brainCalc;
+
+    case 'brain-gcd':
+      return brainGcd;
 
     default:
       return null;
