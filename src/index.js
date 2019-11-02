@@ -3,6 +3,7 @@ import * as brainEven from './games/brain-even';
 import * as brainCalc from './games/brain-calc';
 import * as brainGcd from './games/brain-gcd';
 import * as brainProgression from './games/brain-progression';
+import * as brainPrime from './games/brain-prime';
 
 const getUserName = () => readlineSync.question('\nMay I have your name? ');
 
@@ -24,6 +25,9 @@ const getGame = (gameName) => {
 
     case 'brain-progression':
       return brainProgression;
+
+    case 'brain-prime':
+      return brainPrime;
 
     default:
       return null;
