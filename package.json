@@ -1,7 +1,15 @@
 {
   "name": "brain-games",
-  "version": "0.7.0",
-  "description": "",
+  "version": "0.7.1",
+  "description": "brain-games",
+  "keywords": [
+    "games",
+    "brain-even",
+    "brain-calc",
+    "brain-gcd",
+    "brain-progression",
+    "brain-prime"
+  ],
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
