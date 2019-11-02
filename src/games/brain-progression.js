@@ -16,7 +16,6 @@ const parseProgressionString = (string) => {
     const current = string[i];
 
     if (current === ' ' || i === string.length) {
-
       if (value === '...') {
         hiddenElementIndex = index;
       }
