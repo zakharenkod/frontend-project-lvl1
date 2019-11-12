@@ -1,5 +1,8 @@
+import { cons } from '@hexlet/pairs';
+import startGame from '../index';
 import getRandomInteger from '../helpers';
 
+const rule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 const correctAnswer = 'yes';
 const wrongAnswer = 'no';
 
@@ -10,18 +13,17 @@ const isNumberPrime = (number) => {
 
   return true;
 };
-const isAnswersVariantHasAnswer = (answer) => answer === correctAnswer || answer === wrongAnswer;
 
-const getRule = () => 'Answer "yes" if given number is prime. Otherwise answer "no".';
 const getQuestion = () => getRandomInteger(2, 100);
-const getCorrectAnswer = (question) => (isNumberPrime(question) ? correctAnswer : wrongAnswer);
-const isAnswerCorrect = (answer, question) => (
-  isAnswersVariantHasAnswer(answer) && answer === getCorrectAnswer(question)
-);
+const getAnswer = (question) => (isNumberPrime(question) ? correctAnswer : wrongAnswer);
 
-export {
-  getRule,
-  getQuestion,
-  getCorrectAnswer,
-  isAnswerCorrect,
+const getQuestionAnswerPair = () => {
+  const question = getQuestion();
+  const answer = getAnswer(question);
+
+  return cons(question, answer);
+};
+
+export default () => {
+  startGame(rule, getQuestionAnswerPair);
 };

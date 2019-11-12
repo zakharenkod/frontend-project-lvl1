@@ -1,45 +1,19 @@
 import { cons, car, cdr } from '@hexlet/pairs';
 import getRandomInteger from '../helpers';
+import startGame from '../index';
+
+const rule = 'What is the result of the expression?';
+const signs = '+-*';
 
 const makeExpression = (x, sign, y) => cons(x, cons(sign, y));
 const getX = (expression) => car(expression);
 const getSign = (expression) => car(cdr(expression));
 const getY = (expression) => cdr(cdr(expression));
+const printExpression = (expression) => `${getX(expression)} ${getSign(expression)} ${getY(expression)}`;
 
 const getRandomSign = () => {
-  const signs = '+-*';
-  const randomIndex = getRandomInteger(0, 3);
+  const randomIndex = getRandomInteger(0, signs.length);
   return signs[randomIndex];
-};
-
-const parseExpressionString = (string) => {
-  let x = 0;
-  let y = 0;
-  let sign = '';
-  let separatorCounter = 0;
-  let value = '';
-
-  for (let i = 0; i < string.length; i += 1) {
-    const current = string[i];
-
-    if (current === ' ') {
-      if (separatorCounter === 0) {
-        x = parseInt(value, 10);
-      } else if (separatorCounter === 1) {
-        sign = value;
-      }
-
-      separatorCounter += 1;
-      value = '';
-    } else if (i === string.length - 1) {
-      value += current;
-      y = parseInt(value, 10);
-    } else {
-      value += current;
-    }
-  }
-
-  return { x, sign, y };
 };
 
 const calculateExpression = (triple) => {
@@ -62,21 +36,23 @@ const calculateExpression = (triple) => {
   }
 };
 
-const getRule = () => 'What is the result of the expression?';
-const getQuestion = () => `${getRandomInteger(1, 100)} ${getRandomSign()} ${getRandomInteger(1, 100)}`;
-const getCorrectAnswer = (question) => {
-  const { x, sign, y } = parseExpressionString(question);
-  const tripleExpression = makeExpression(x, sign, y);
-
-  return calculateExpression(tripleExpression);
-};
-const isAnswerCorrect = (answer, question) => (
-  parseInt(answer, 10) === parseInt(getCorrectAnswer(question), 10)
+const getQuestion = () => makeExpression(
+  getRandomInteger(1, 100),
+  getRandomSign(),
+  getRandomInteger(1, 100),
 );
 
-export {
-  getRule,
-  getQuestion,
-  getCorrectAnswer,
-  isAnswerCorrect,
+const getAnswer = (expression) => calculateExpression(expression);
+
+const getQuestionAnswerPair = () => {
+  const question = getQuestion();
+  const answer = getAnswer(question);
+  const questionString = printExpression(question);
+  const answerString = String(answer);
+
+  return cons(questionString, answerString);
+};
+
+export default () => {
+  startGame(rule, getQuestionAnswerPair);
 };
