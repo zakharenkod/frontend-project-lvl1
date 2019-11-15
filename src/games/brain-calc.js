@@ -1,26 +1,16 @@
-import { cons, car, cdr } from '@hexlet/pairs';
+import { cons } from '@hexlet/pairs';
 import getRandomInteger from '../helpers';
 import startGame from '../index';
 
 const rule = 'What is the result of the expression?';
 const signs = '+-*';
 
-const makeExpression = (x, sign, y) => cons(x, cons(sign, y));
-const getX = (expression) => car(expression);
-const getSign = (expression) => car(cdr(expression));
-const getY = (expression) => cdr(cdr(expression));
-const printExpression = (expression) => `${getX(expression)} ${getSign(expression)} ${getY(expression)}`;
-
 const getRandomSign = () => {
-  const randomIndex = getRandomInteger(0, signs.length);
+  const randomIndex = getRandomInteger(0, signs.length - 1);
   return signs[randomIndex];
 };
 
-const calculateExpression = (triple) => {
-  const x = getX(triple);
-  const y = getY(triple);
-  const sign = getSign(triple);
-
+const calculateExpression = (x, sign, y) => {
   switch (sign) {
     case '+':
       return x + y;
@@ -36,23 +26,16 @@ const calculateExpression = (triple) => {
   }
 };
 
-const getQuestion = () => makeExpression(
-  getRandomInteger(1, 100),
-  getRandomSign(),
-  getRandomInteger(1, 100),
-);
+const getQuestionAnswer = () => {
+  const x = getRandomInteger(1, 100);
+  const sign = getRandomSign();
+  const y = getRandomInteger(1, 100);
+  const question = `${x} ${sign} ${y}`;
+  const answer = calculateExpression(x, sign, y);
 
-const getAnswer = (expression) => calculateExpression(expression);
-
-const getQuestionAnswerPair = () => {
-  const question = getQuestion();
-  const answer = getAnswer(question);
-  const questionString = printExpression(question);
-  const answerString = String(answer);
-
-  return cons(questionString, answerString);
+  return cons(question, String(answer));
 };
 
 export default () => {
-  startGame(rule, getQuestionAnswerPair);
+  startGame(rule, getQuestionAnswer);
 };

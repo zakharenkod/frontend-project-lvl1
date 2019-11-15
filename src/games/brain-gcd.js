@@ -12,7 +12,7 @@ const getGcd = (x, y, startNumber) => {
   return getGcd(x, y, startNumber - 1);
 };
 
-const getQuestion = () => cons(getRandomInteger(1, 101), getRandomInteger(1, 101));
+const getQuestion = () => cons(getRandomInteger(1, 100), getRandomInteger(1, 100));
 const getAnswer = (question) => {
   const x = car(question);
   const y = cdr(question);
@@ -21,15 +21,13 @@ const getAnswer = (question) => {
   return getGcd(x, y, minNumber);
 };
 
-const getQuestionAnswerPair = () => {
+const getQuestionAnswer = () => {
   const question = getQuestion();
   const answer = getAnswer(question);
-  const questionString = printPair(question);
-  const answerString = String(answer);
 
-  return cons(questionString, answerString);
+  return cons(printPair(question), String(answer));
 };
 
 export default () => {
-  startGame(rule, getQuestionAnswerPair);
+  startGame(rule, getQuestionAnswer);
 };

@@ -8,7 +8,7 @@ let progressionHiddenElement = null;
 
 const getQuestion = () => {
   const startNumber = getRandomInteger(1, 20);
-  const randomIndex = getRandomInteger(0, 10);
+  const randomIndex = getRandomInteger(0, progressionLength - 1);
   const progressionDifference = getRandomInteger(2, 10);
   let progressionString = '';
   let currentValue = startNumber;
@@ -17,27 +17,27 @@ const getQuestion = () => {
     currentValue += progressionDifference;
 
     if (i !== 0) {
-      progressionString += ' ';
+      progressionString = `${progressionString} `;
     }
 
     if (i === randomIndex) {
       progressionHiddenElement = currentValue;
-      progressionString += '...';
+      progressionString = `${progressionString}...`;
     } else {
-      progressionString += currentValue;
+      progressionString = `${progressionString}${currentValue}`;
     }
   }
 
   return progressionString;
 };
 
-const getQuestionAnswerPair = () => {
+const getQuestionAnswer = () => {
   const question = getQuestion();
-  const answerString = String(progressionHiddenElement);
+  const answer = String(progressionHiddenElement);
 
-  return cons(question, answerString);
+  return cons(question, answer);
 };
 
 export default () => {
-  startGame(rule, getQuestionAnswerPair);
+  startGame(rule, getQuestionAnswer);
 };

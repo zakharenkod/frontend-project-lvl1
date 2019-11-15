@@ -1,79 +1,39 @@
 import { car, cdr } from '@hexlet/pairs';
 import readlineSync from 'readline-sync';
 
-// import * as brainEven from './games/brain-even';
-// import * as brainCalc from './games/brain-calc';
-// import * as brainGcd from './games/brain-gcd';
-// import * as brainProgression from './games/brain-progression';
-// import * as brainPrime from './games/brain-prime';
-
-const getUserName = () => readlineSync.question('\nMay I have your name? ');
-
-const printRule = (rule) => {
-  console.log(rule);
-};
-
-const getUserAnswer = () => readlineSync.question('Your answer: ');
-// const getGame = (gameName) => {
-//   switch (gameName) {
-//     case 'brain-even':
-//       return brainEven;
-//
-//     case 'brain-calc':
-//       return brainCalc;
-//
-//     case 'brain-gcd':
-//       return brainGcd;
-//
-//     case 'brain-progression':
-//       return brainProgression;
-//
-//     case 'brain-prime':
-//       return brainPrime;
-//
-//     default:
-//       return null;
-//   }
-// };
-
 /**
  * startGame function
  * @param rule
- * @param getQuestionAnswerPair
+ * @param getQuestionAnswer
  */
-export default (rule = '', getQuestionAnswerPair) => {
+export default (rule = '', getQuestionAnswer) => {
   console.log('Welcome to the Brain Games!');
 
   if (rule) {
-    printRule(rule);
+    console.log(rule);
   }
 
-  const userName = getUserName();
+  const userName = readlineSync.question('\nMay I have your name? ');
   console.log(`Hello, ${userName}!\n`);
 
-  if (!getQuestionAnswerPair) return;
+  if (!getQuestionAnswer) return;
 
-  let correctAnswerCounter = 3;
-
-  while (correctAnswerCounter > 0) {
-    const questionAnswerPair = getQuestionAnswerPair();
-    const question = car(questionAnswerPair);
-    const correctAnswer = cdr(questionAnswerPair);
+  for (let i = 0; i < 3; i += 1) {
+    const questionAnswer = getQuestionAnswer();
+    const question = car(questionAnswer);
+    const answer = cdr(questionAnswer);
     console.log('Question: ', question);
 
-    const userAnswer = getUserAnswer();
+    const userAnswer = readlineSync.question('Your answer: ');
 
-    if (userAnswer !== correctAnswer) {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\n`);
+    if (userAnswer !== answer) {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'.\n`);
       console.log(`Let's try again, ${userName}!`);
-      break;
+      return;
     }
 
     console.log('Correct!');
-    correctAnswerCounter -= 1;
   }
 
-  if (correctAnswerCounter === 0) {
-    console.log(`Congratulations, ${userName}!`);
-  }
+  console.log(`Congratulations, ${userName}!`);
 };

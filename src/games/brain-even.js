@@ -7,16 +7,14 @@ const correctAnswer = 'yes';
 const wrongAnswer = 'no';
 
 const isNumberEven = (number) => number % 2 === 0;
-const getQuestion = () => getRandomInteger(1, 100);
-const getAnswer = (question) => (isNumberEven(question) ? correctAnswer : wrongAnswer);
 
-const getQuestionAnswerPair = () => {
-  const question = getQuestion();
-  const answer = getAnswer(question);
+const getQuestionAnswer = () => {
+  const question = getRandomInteger(1, 100);
+  const answer = isNumberEven(question) ? correctAnswer : wrongAnswer;
 
   return cons(question, answer);
 };
 
 export default () => {
-  startGame(rule, getQuestionAnswerPair);
+  startGame(rule, getQuestionAnswer);
 };

@@ -17,7 +17,7 @@ const isNumberPrime = (number) => {
 const getQuestion = () => getRandomInteger(2, 100);
 const getAnswer = (question) => (isNumberPrime(question) ? correctAnswer : wrongAnswer);
 
-const getQuestionAnswerPair = () => {
+const getQuestionAnswer = () => {
   const question = getQuestion();
   const answer = getAnswer(question);
 
@@ -25,5 +25,5 @@ const getQuestionAnswerPair = () => {
 };
 
 export default () => {
-  startGame(rule, getQuestionAnswerPair);
+  startGame(rule, getQuestionAnswer);
 };
