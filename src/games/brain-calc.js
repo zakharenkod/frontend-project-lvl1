@@ -10,7 +10,7 @@ const getRandomSign = () => {
   return signs[randomIndex];
 };
 
-const calculateExpression = (x, sign, y) => {
+const calculateExpression = (x, y, sign) => {
   switch (sign) {
     case '+':
       return x + y;
@@ -22,7 +22,7 @@ const calculateExpression = (x, sign, y) => {
       return x * y;
 
     default:
-      return NaN;
+      return null;
   }
 };
 
@@ -31,7 +31,7 @@ const getQuestionAnswer = () => {
   const sign = getRandomSign();
   const y = getRandomInteger(1, 100);
   const question = `${x} ${sign} ${y}`;
-  const answer = calculateExpression(x, sign, y);
+  const answer = calculateExpression(x, y, sign);
 
   return cons(question, String(answer));
 };

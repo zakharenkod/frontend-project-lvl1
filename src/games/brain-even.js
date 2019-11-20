@@ -6,11 +6,11 @@ const rule = 'Answer "yes" if the number is even, otherwise answer "no".';
 const correctAnswer = 'yes';
 const wrongAnswer = 'no';
 
-const isNumberEven = (number) => number % 2 === 0;
+const isEven = (number) => number % 2 === 0;
 
 const getQuestionAnswer = () => {
   const question = getRandomInteger(1, 100);
-  const answer = isNumberEven(question) ? correctAnswer : wrongAnswer;
+  const answer = isEven(question) ? correctAnswer : wrongAnswer;
 
   return cons(question, answer);
 };
