@@ -4,7 +4,7 @@ import getRandomInteger from '../helpers';
 
 const rule = 'What number is missing in the progression?';
 
-const getProgression = (startNumber, randomIndex, progressionDifference, progressionLength) => {
+const getProgression = (progressionLength = 10, startNumber = 1, progressionDifference = 2, index = 0) => {
   let progression = '';
   let currentValue = startNumber;
 
@@ -15,7 +15,7 @@ const getProgression = (startNumber, randomIndex, progressionDifference, progres
       progression = `${progression} `;
     }
 
-    if (i === randomIndex) {
+    if (i === index) {
       progression = `${progression}...`;
     } else {
       progression = `${progression}${currentValue}`;
@@ -30,7 +30,7 @@ const getQuestionAnswer = () => {
   const startNumber = getRandomInteger(1, 20);
   const randomIndex = getRandomInteger(0, progressionLength - 1);
   const progressionDifference = getRandomInteger(2, 10);
-  const question = getProgression(startNumber, randomIndex, progressionDifference, progressionLength);
+  const question = getProgression(progressionLength, startNumber, progressionDifference, randomIndex);
   const answer = String(startNumber + (randomIndex + 1) * progressionDifference);
 
   return cons(question, answer);
