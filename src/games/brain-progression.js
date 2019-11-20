@@ -4,36 +4,34 @@ import getRandomInteger from '../helpers';
 
 const rule = 'What number is missing in the progression?';
 const progressionLength = 10;
-let progressionHiddenElement = null;
 
-const getQuestion = () => {
-  const startNumber = getRandomInteger(1, 20);
-  const randomIndex = getRandomInteger(0, progressionLength - 1);
-  const progressionDifference = getRandomInteger(2, 10);
-  let progressionString = '';
+const getProgression = (startNumber, randomIndex, progressionDifference) => {
+  let progression = '';
   let currentValue = startNumber;
 
   for (let i = 0; i < progressionLength; i += 1) {
     currentValue += progressionDifference;
 
     if (i !== 0) {
-      progressionString = `${progressionString} `;
+      progression = `${progression} `;
     }
 
     if (i === randomIndex) {
-      progressionHiddenElement = currentValue;
-      progressionString = `${progressionString}...`;
+      progression = `${progression}...`;
     } else {
-      progressionString = `${progressionString}${currentValue}`;
+      progression = `${progression}${currentValue}`;
     }
   }
 
-  return progressionString;
+  return progression;
 };
 
 const getQuestionAnswer = () => {
-  const question = getQuestion();
-  const answer = String(progressionHiddenElement);
+  const startNumber = getRandomInteger(1, 20);
+  const randomIndex = getRandomInteger(0, progressionLength - 1);
+  const progressionDifference = getRandomInteger(2, 10);
+  const question = getProgression(startNumber, randomIndex, progressionDifference);
+  const answer = String(startNumber + (randomIndex + 1) * progressionDifference);
 
   return cons(question, answer);
 };

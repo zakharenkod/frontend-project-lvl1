@@ -7,6 +7,8 @@ const correctAnswer = 'yes';
 const wrongAnswer = 'no';
 
 const isNumberPrime = (number) => {
+  if (number < 2) return false;
+
   for (let i = 2; i < number; i += 1) {
     if (number % i === 0) return false;
   }
@@ -14,7 +16,7 @@ const isNumberPrime = (number) => {
   return true;
 };
 
-const getQuestion = () => getRandomInteger(2, 100);
+const getQuestion = () => getRandomInteger(-100, 100);
 const getAnswer = (question) => (isNumberPrime(question) ? correctAnswer : wrongAnswer);
 
 const getQuestionAnswer = () => {

@@ -18,7 +18,9 @@ export default (rule = '', getQuestionAnswer) => {
 
   if (!getQuestionAnswer) return;
 
-  for (let i = 0; i < 3; i += 1) {
+  const answersCount = 3;
+
+  for (let i = 0; i < answersCount; i += 1) {
     const questionAnswer = getQuestionAnswer();
     const question = car(questionAnswer);
     const answer = cdr(questionAnswer);
