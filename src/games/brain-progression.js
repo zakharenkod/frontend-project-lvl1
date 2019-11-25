@@ -1,10 +1,10 @@
 import { cons } from '@hexlet/pairs';
-import startGame from '../index';
+import startGame from '..';
 import getRandomInteger from '../helpers';
 
 const rule = 'What number is missing in the progression?';
 
-const getProgression = (progressionLength = 10, startNumber = 1, progressionDiff = 2, index = 0) => {
+const getProgression = (progressionLength, startNumber, progressionDiff, index) => {
   let progression = '';
   let currentValue = startNumber;
 

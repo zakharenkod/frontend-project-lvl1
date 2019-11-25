@@ -1,6 +1,6 @@
 import { cons } from '@hexlet/pairs';
 import getRandomInteger from '../helpers';
-import startGame from '../index';
+import startGame from '..';
 
 const rule = 'What is the result of the expression?';
 const signs = '+-*';
