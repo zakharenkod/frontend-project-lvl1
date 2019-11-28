@@ -1,6 +1,8 @@
 import { car, cdr } from '@hexlet/pairs';
 import readlineSync from 'readline-sync';
 
+const answersCount = 3;
+
 /**
  * startGame function
  * @param rule
@@ -8,17 +10,12 @@ import readlineSync from 'readline-sync';
  */
 export default (rule = '', getQuestionAnswer) => {
   console.log('Welcome to the Brain Games!');
-
-  if (rule) {
-    console.log(rule);
-  }
+  console.log(rule);
 
   const userName = readlineSync.question('\nMay I have your name? ');
   console.log(`Hello, ${userName}!\n`);
 
   if (!getQuestionAnswer) return;
-
-  const answersCount = 3;
 
   for (let i = 0; i < answersCount; i += 1) {
     const questionAnswer = getQuestionAnswer();

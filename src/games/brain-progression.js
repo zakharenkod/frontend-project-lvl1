@@ -3,35 +3,25 @@ import startGame from '..';
 import getRandomInteger from '../helpers';
 
 const rule = 'What number is missing in the progression?';
+const progressionLength = 10;
 
-const getProgression = (progressionLength, startNumber, progressionDiff, index) => {
+const getProgression = (start, diff, hiddenElementIndex) => {
   let progression = '';
-  let currentValue = startNumber;
 
   for (let i = 0; i < progressionLength; i += 1) {
-    currentValue += progressionDiff;
-
-    if (i !== 0) {
-      progression = `${progression} `;
-    }
-
-    if (i === index) {
-      progression = `${progression}...`;
-    } else {
-      progression = `${progression}${currentValue}`;
-    }
+    const currentValue = start + diff * i;
+    progression = (i !== hiddenElementIndex) ? `${progression}${currentValue} ` : `${progression}... `;
   }
 
   return progression;
 };
 
 const getQuestionAnswer = () => {
-  const progressionLength = 10;
-  const startNumber = getRandomInteger(1, 20);
-  const randomIndex = getRandomInteger(0, progressionLength - 1);
+  const start = getRandomInteger(1, 20);
+  const hiddenElementIndex = getRandomInteger(0, progressionLength - 1);
   const progressionDiff = getRandomInteger(2, 10);
-  const question = getProgression(progressionLength, startNumber, progressionDiff, randomIndex);
-  const answer = String(startNumber + (randomIndex + 1) * progressionDiff);
+  const question = getProgression(start, progressionDiff, hiddenElementIndex);
+  const answer = String(start + progressionDiff * hiddenElementIndex);
 
   return cons(question, answer);
 };
