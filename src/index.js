@@ -8,14 +8,12 @@ const answersCount = 3;
  * @param rule
  * @param getQuestionAnswer
  */
-export default (rule = '', getQuestionAnswer) => {
+export default (rule, getQuestionAnswer) => {
   console.log('Welcome to the Brain Games!');
   console.log(rule);
 
   const userName = readlineSync.question('\nMay I have your name? ');
   console.log(`Hello, ${userName}!\n`);
-
-  if (!getQuestionAnswer) return;
 
   for (let i = 0; i < answersCount; i += 1) {
     const questionAnswer = getQuestionAnswer();

@@ -6,7 +6,7 @@ const rule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 const correctAnswer = 'yes';
 const wrongAnswer = 'no';
 
-const isNumberPrime = (number) => {
+const isPrime = (number) => {
   if (number < 2) return false;
 
   for (let i = 2; i < number / 2; i += 1) {
@@ -16,12 +16,9 @@ const isNumberPrime = (number) => {
   return true;
 };
 
-const getQuestion = () => getRandomInteger(-100, 100);
-const getAnswer = (question) => (isNumberPrime(question) ? correctAnswer : wrongAnswer);
-
 const getQuestionAnswer = () => {
-  const question = getQuestion();
-  const answer = getAnswer(question);
+  const question = getRandomInteger(-100, 100);
+  const answer = isPrime(question) ? correctAnswer : wrongAnswer;
 
   return cons(question, answer);
 };
