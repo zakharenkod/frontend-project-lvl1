@@ -8,6 +8,11 @@ Clone project
 git clone https://github.com/zakharenkod/frontend-project-lvl1.git
 ```
 
+Install dependencies
+```bash
+make install
+```
+
 Install package
 ```bash
 make setup
